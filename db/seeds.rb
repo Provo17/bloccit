@@ -27,6 +27,8 @@ require "random_data"
    )
  end
  
+ posts.find_or_create_by(title: "LOOK AT ME!", body: "I'm being looked at!")
+ 
  puts "Seed finished"
  puts "#{Post.count} posts created"
  puts "#{Comment.count} comments created"
