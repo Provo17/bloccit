@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Question, type: :model do
     
-  let(:question) { Question.create!(title: "New Post Title", body: "New Post Body", resolved: "Boolean Value") }
+  let(:question) { Question.create!(title: "New Post Title", body: "New Post Body", resolved: true) }
  
    describe "attributes" do
 
