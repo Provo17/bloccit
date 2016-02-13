@@ -20,6 +20,16 @@ require "random_data"
      body: RandomData.random_paragraph
    )
  end
+
+50.times do
+ 
+ Advertisement.create!(
+
+     title:  RandomData.random_sentence,
+     copy:   RandomData.random_paragraph
+   )
+ end
+ advertisement = Advertisement.all
  
  puts "Seed finished"
  puts "#{Post.count} posts created"
