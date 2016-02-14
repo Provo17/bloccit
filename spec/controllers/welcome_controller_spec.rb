@@ -1,4 +1,6 @@
 require 'rails_helper'
+include RandomData
+
 #1
 RSpec.describe WelcomeController, type: :controller do
     
