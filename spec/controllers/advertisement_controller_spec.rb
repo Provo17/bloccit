@@ -25,9 +25,8 @@ RSpec.describe AdvertisementController, type: :controller do
 
   describe "GET #create" do
     it "returns http success" do
-      get :create
+      post :create
       expect(response).to have_http_status(:success)
     end
   end
-
 end
