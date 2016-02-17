@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'random_data'
 include RandomData
 
 let(:my_topic) { Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph) }
