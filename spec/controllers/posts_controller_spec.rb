@@ -9,7 +9,7 @@ let(:my_topic) { Topic.create!(name:  RandomData.random_sentence, description: R
 let(:my_post) { my_topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph) }
 
 
-describe "GET show" do
+    describe "GET show" do
     
      it "returns http success" do
  # #16
@@ -29,7 +29,7 @@ describe "GET show" do
        expect(assigns(:post)).to eq(my_post)
      end
      
-   end
+    end
 
  
  # #1
@@ -74,7 +74,7 @@ describe "GET show" do
        expect(response).to redirect_to [my_topic, Post.last]
       end
       
-   end
+    end
 
     describe "GET edit" do
         
@@ -100,9 +100,9 @@ describe "GET show" do
        expect(post_instance.body).to eq my_post.body
      end
      
-   end
+    end
    
-   describe "PUT update" do
+    describe "PUT update" do
        
      it "updates post with expected attributes" do
        new_title = RandomData.random_sentence
@@ -120,16 +120,17 @@ describe "GET show" do
      it "redirects to the updated post" do
        new_title = RandomData.random_sentence
        new_body = RandomData.random_paragraph
-   end
+     end
  
  # #4
        put :update, topic_id: my_topic.id, id: my_post.id, post: {title: new_title, body: new_body}
  # #30
        expect(response).to redirect_to [my_topic, my_post]
      end
- end
+    end
 
     describe "DELETE destroy" do
+        
      it "deletes the post" do
        delete :destroy, topic_id: my_topic.id, id: my_post.id
  # #6
@@ -144,5 +145,5 @@ describe "GET show" do
  # #33
        expect(response).to redirect_to my_topic
      end
-   end 
- end
+    end 
+end
