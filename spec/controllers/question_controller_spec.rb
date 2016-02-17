@@ -87,18 +87,18 @@ RSpec.describe QuestionController, type: :controller do
  
  # #5
       it "assigns the new post to @post" do
-        question :create, question: {title: 'RandomData.random_sentence', body: 'RandomData.random_paragraph'}
+        post :create, question: {title: 'RandomData.random_sentence', body: 'RandomData.random_paragraph'}
         expect(assigns(:question)).to eq Question.last
       end
  
  # #6
       it "redirects to the new post" do
-        question :create, question: {title: 'RandomData.random_sentence', body: 'RandomData.random_paragraph'}
+        post :create, question: {title: 'RandomData.random_sentence', body: 'RandomData.random_paragraph'}
         expect(response).to redirect_to Question.last
       end
   end
   
-  describe "PUT update" do
+    describe "PUT update" do
      it "updates question with expected attributes" do
        new_title = RandomData.random_sentence
        new_body = RandomData.random_paragraph
