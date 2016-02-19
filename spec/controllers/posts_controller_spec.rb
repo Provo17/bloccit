@@ -120,9 +120,7 @@ let(:my_post) { my_topic.posts.create!(title: RandomData.random_sentence, body: 
      it "redirects to the updated post" do
        new_title = RandomData.random_sentence
        new_body = RandomData.random_paragraph
-     end
  
- # #4
        put :update, topic_id: my_topic.id, id: my_post.id, post: {title: new_title, body: new_body}
  # #30
        expect(response).to redirect_to [my_topic, my_post]
@@ -138,7 +136,7 @@ let(:my_post) { my_topic.posts.create!(title: RandomData.random_sentence, body: 
        expect(count).to eq 0
      end
  
-     it "redirects to posts index" do
+     
      it "redirects to topic show" do
  # #32
        delete :destroy, topic_id: my_topic.id, id: my_post.id
