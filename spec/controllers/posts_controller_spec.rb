@@ -1,4 +1,6 @@
 require 'rails_helper'
+require 'random_data'
+include RandomData
 
 RSpec.describe PostsController, type: :controller do
 
@@ -14,7 +16,7 @@ let(:my_post) { Post.create!(title: 'RandomData.random_sentence', body: 'RandomD
   it "assigns [my_post] to @posts" do
        get :index
  # #9
-       expect(assigns(:posts)).to eq([my_post])
+       expect(assigns(:post)).to eq([my_post])
      end
    end
 
