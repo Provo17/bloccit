@@ -6,7 +6,7 @@ RSpec.describe PostsController, type: :controller do
  # #12
 let(:my_topic) { Topic.create!(name:  RandomData.random_sentence, description: RandomData.random_paragraph) }
  # #13
-let(:my_post) { my_topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph) }
+let(:my_post) { my_topic.post.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph) }
 
 
 describe "GET show" do
@@ -120,14 +120,13 @@ describe "GET show" do
      it "redirects to the updated post" do
        new_title = RandomData.random_sentence
        new_body = RandomData.random_paragraph
-   end
  
- # #4
        put :update, topic_id: my_topic.id, id: my_post.id, post: {title: new_title, body: new_body}
  # #30
        expect(response).to redirect_to [my_topic, my_post]
      end
- end
+   end
+ 
 
     describe "DELETE destroy" do
      it "deletes the post" do
@@ -137,7 +136,7 @@ describe "GET show" do
        expect(count).to eq 0
      end
  
-     it "redirects to posts index" do
+     
      it "redirects to topic show" do
  # #32
        delete :destroy, topic_id: my_topic.id, id: my_post.id
@@ -145,4 +144,4 @@ describe "GET show" do
        expect(response).to redirect_to my_topic
      end
    end 
- end
+end

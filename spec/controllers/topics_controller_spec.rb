@@ -1,9 +1,11 @@
 require 'rails_helper'
+require 'random_data'
 include RandomData
 
 let(:my_topic) { Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph) }
  
    describe "GET index" do
+       
      it "returns http success" do
        get :index
        expect(response).to have_http_status(:success)
@@ -32,6 +34,7 @@ let(:my_topic) { Topic.create!(name: RandomData.random_sentence, description: Ra
    end
    
    describe "GET new" do
+       
      it "returns http success" do
        get :new
        expect(response).to have_http_status(:success)
@@ -49,6 +52,7 @@ let(:my_topic) { Topic.create!(name: RandomData.random_sentence, description: Ra
    end
    
    describe "POST create" do
+       
      it "increases the number of topics by 1" do
        expect{ post :create, {topic: {name: RandomData.random_sentence, description: RandomData.random_paragraph}}}.to change(Topic,:count).by(1)
      end
