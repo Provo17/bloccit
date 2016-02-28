@@ -5,7 +5,7 @@ include RandomData
 RSpec.describe SponsoredPost, type: :model do
   
   let(:my_topic) { Topic.create!(name:  RandomData.random_sentence, description: RandomData.random_paragraph) }
-  let(:my_sponsoredpost) { my_topic.sponsoredposts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph) }
+  let(:my_sponsoredpost) { my_topic.sponsoredpost.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph) }
   
  describe "attributes" do
      it "responds to title" do
