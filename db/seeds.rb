@@ -27,13 +27,10 @@ require "random_data"
    )
  end
  
- 10.times do
-  
-  Comment.create!
-   
-   post.find_or_create_by(title: "LOOK AT ME!", body: "I'm being looked at!")
-   Comment.find_or_create_by(body: "WHEEEEEEEEEEEEE!!!!")
- end 
+ 
+ puts "#{Post.count}"
+ post.find_or_create_by(title: "LOOK AT ME!", body: "I'm being looked at!")
+ puts "#{Post.count}"  
  
  
  puts "Seed finished"
