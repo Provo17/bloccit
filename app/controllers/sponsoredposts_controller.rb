@@ -3,10 +3,10 @@ class SponsoredpostsController < ApplicationController
   def create
  # #9
      @sponsoredpost = SponsoredPost.new
-     @showpost.title = params[:showpost][:title]
-     @showpost.body = params[:showpost][:body]
+     @sponsoredpost.title = params[:sponsoredpost][:title]
+     @sponsoredpost.body = params[:sponsoredpost][:body]
      @topic = Topic.find(params[:topic_id])
-     @showpost.topic = @topic
+     @sponsoredpost.topic = @topic
 
  # #10
      if @sponsoredpost.save

@@ -109,8 +109,7 @@ describe "GET show" do
        new_body = RandomData.random_paragraph
  
         put :update, topic_id: my_topic.id, id: my_post.id, post: {title: new_title, body: new_body}
- 
- # #3
+
        updated_post = assigns(:post)
        expect(updated_post.id).to eq my_post.id
        expect(updated_post.title).to eq new_title
@@ -122,7 +121,6 @@ describe "GET show" do
        new_body = RandomData.random_paragraph
  
        put :update, topic_id: my_topic.id, id: my_post.id, post: {title: new_title, body: new_body}
- # #30
        expect(response).to redirect_to [my_topic, my_post]
      end
    end
@@ -131,16 +129,13 @@ describe "GET show" do
     describe "DELETE destroy" do
      it "deletes the post" do
        delete :destroy, topic_id: my_topic.id, id: my_post.id
- # #6
        count = Post.where({id: my_post.id}).size
        expect(count).to eq 0
      end
  
      
      it "redirects to topic show" do
- # #32
        delete :destroy, topic_id: my_topic.id, id: my_post.id
- # #33
        expect(response).to redirect_to my_topic
      end
    end 
