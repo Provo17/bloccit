@@ -1,0 +1,1 @@
+spec/api/v1/controllers/posts_controller_spec.rb
