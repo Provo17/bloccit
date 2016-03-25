@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'random_data'
 include RandomData
 
 RSpec.describe Topic, type: :model do

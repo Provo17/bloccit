@@ -4,8 +4,8 @@ include RandomData
 
 RSpec.describe SponsoredpostsController, type: :controller do
     
-  let(:my_topic) { Topic.create!(name:  RandomData.random_sentence, description: RandomData.random_paragraph) }
-  let(:my_sponsoredpost) { my_topic.sponsoredPpost.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph) }
+  let(:my_topic) { Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph) }
+  let(:my_sponsoredpost) { my_topic.sponsoredpost.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph) }
 
   describe "GET show" do
      it "returns http success" do
@@ -20,7 +20,7 @@ RSpec.describe SponsoredpostsController, type: :controller do
  
      it "assigns my_sponsoredpost to @sponsoredpost" do
        get :show, topic_id: my_topic.id, id: my_sponsoredpost.id
-       expect(assigns(:my_sponsoredpost)).to eq(my_sponsoredpost)
+       expect(assigns(:sponsoredpost)).to eq(my_sponsoredpost)
      end
    end
 

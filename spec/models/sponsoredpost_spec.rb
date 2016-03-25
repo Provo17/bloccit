@@ -4,20 +4,22 @@ include RandomData
 
 RSpec.describe SponsoredPost, type: :model do
   
-  let(:my_topic) { Topic.create!(name:  RandomData.random_sentence, description: RandomData.random_paragraph) }
-  let(:my_sponsoredpost) { my_topic.sponsoredpost.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph) }
+  let(:topic) { Topic.create!(name:  RandomData.random_sentence, description: RandomData.random_paragraph) }
+  let(:sponsoredpost) { topic.sponsoredposts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph) }
+  
+  it { is_expected.to belong_to(:topic) }  
   
  describe "attributes" do
      it "responds to title" do
-       expect(my_sponsoredpost).to respond_to(:title)
+       expect(sponsoredpost).to respond_to(:title)
      end
  
      it "responds to body" do
-       expect(my_sponsoredpost).to respond_to(:body)
+       expect(sponsoredpost).to respond_to(:body)
      end
  
      it "responds to price" do
-       expect(my_sponsoredpost).to respond_to(:price)
+       expect(sponsoredpost).to respond_to(:price)
      end
    end
 end
