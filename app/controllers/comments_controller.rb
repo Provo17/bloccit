@@ -4,9 +4,7 @@ class CommentsController < ApplicationController
     before_action :authorize_user, only: [:destroy]
  
    def create
-     @topic = Topic.find(params[:topic_id])
      @post = Post.find(params[:post_id])
-     comment = @topic.comments.new(comment_params)
      comment = @post.comments.new(comment_params)
      comment.user = current_user
  
@@ -22,12 +20,10 @@ class CommentsController < ApplicationController
    end
  
     def destroy
-     @topic = Topic.find(params[:topic_id])
      @post = Post.find(params[:post_id])
-     comment = @topic.comments.new(comment_params)
-     comment = @post.comments.find(params[:id])
+     @comment = @post.comments.find(params[:id])
  
-     if comment.destroy
+     if @comment.destroy
        flash[:notice] = "Comment was deleted."
        redirect_to [@post.topic, @post]
      else
@@ -46,7 +42,7 @@ class CommentsController < ApplicationController
      comment = Comment.find(params[:id])
      unless current_user == comment.user || current_user.admin?
        flash[:alert] = "You do not have permission to delete a comment."
-       redirect_to [comment.post.topic, comment.post]
+       redirect_to [post.topic, post]
      end
    end
 end
