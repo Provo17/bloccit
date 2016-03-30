@@ -1,6 +1,6 @@
 require 'rails_helper'
  
- RSpec.describe Api::V1::TopicsController, type: :controller do
+ RSpec.describe Api::V1::PostsController, type: :controller do
    let(:my_user) { create(:user) }
    let(:my_topic) { create(:topic) }
    let(:my_post) { create(:post, topic: my_topic) }   
@@ -49,12 +49,12 @@ require 'rails_helper'
    end
    
      it "PUT update returns http forbidden" do
-       put :update, id: my_post.id, post: {name: "post Name", description: "post Description"}
+       put :update, id: my_post.id 
        expect(response).to have_http_status(401)
      end
  
      it "POST create returns http forbidden" do
-       post :create, post: {name: "post Name", description: "post Description"}
+       post :create
        expect(response).to have_http_status(401)
      end
  
