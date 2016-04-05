@@ -12,11 +12,13 @@ require "random_data"
  
  15.times do
    SponsoredPost.create!(
-     name:         RandomData.random_sentence,
-     description:  RandomData.random_paragraph
+     title: RandomData.random_sentence,
+     body:  RandomData.random_paragraph,
+     price: 100,
+     topic:  topics.sample
    )
  end
- topics = SponsoredPost.all
+ 
 
 
  # Create Posts
