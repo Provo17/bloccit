@@ -29,12 +29,12 @@ require "random_data"
  
  
  puts "#{Post.count}"
- post.find_or_create_by(title: "LOOK AT ME!", body: "I'm being looked at!")
+ uniquepost = post.find_or_create_by(title: "LOOK AT ME!", body: "I'm being looked at!")
  puts "#{Post.count}"  
  
  
  puts "#{Comment.count}"
- Comment.find_or_create_by(body: "I'm looking right at you!", post: post.sample)
+ Comment.find_or_create_by(body: "I'm looking right at you!", post: uniquepost)
  puts "#{Comment.count}"  
  
  
