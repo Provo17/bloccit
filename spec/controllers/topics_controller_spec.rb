@@ -7,7 +7,7 @@ include SessionsHelper
 RSpec.describe TopicsController, type: :controller do
  
   let (:my_topic) { Topic.create!(name:  RandomData.random_sentence, description:   RandomData.random_paragraph) }
-  let(:my_comment) { Comment.create!(name: "C1") }
+  let(:my_comment) { Comment.create!(body: RandomData.random_paragraph, user: my_user) }
   
   context "guest" do
     describe "GET index" do
@@ -274,23 +274,6 @@ RSpec.describe TopicsController, type: :controller do
         delete :destroy, {id: my_topic.id}
         expect(response).to redirect_to topics_path
       end
-    end
-    
-    describe "Get show" do
-      it "returns http success" do 
-       get :show, { id: my_comment.id }
-       expect(response).to have_http_status(:success)
-     end
- 
-     it "renders the #show view" do
-       get :show, { id: my_comment.id }
-       expect(response).to render_template :show
-     end
- 
-    it "assigns my_comment to @comment" do
-      get :show, { id: my_comment.id }
-      expect(assigns(:comment)).to eq(my_comment)
-      end    
     end
   end
 end
