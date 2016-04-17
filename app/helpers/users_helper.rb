@@ -1,9 +1,12 @@
 module UsersHelper
-    def user_has_posts(post)
-        user.post if user && user.post.present?
-    end
-    
-    def user_has_comments(comment)
-        user.comment. if user && user.comment.present?
-    end
+	def has_posts_or_comments?(user)
+		puts "calling has_posts_or_comments?"
+		puts "counts"
+		puts user.comments
+		puts user.posts
+		if user.comments.count + user.posts.count == 0 then
+			puts "User has no posts or comments"
+			return "User has no posts or comments"
+		end
+	end    
 end
