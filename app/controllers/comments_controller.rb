@@ -40,31 +40,31 @@ class CommentsController < ApplicationController
    end
  
     def destroy
- if params[:post_id]
-      @post = Post.find(params[:post_id])
-      comment_post = @post.comments.find(params[:id])
-
-      if comment_post.destroy
-        flash[:notice] = "Comment was deleted."
-        redirect_to [@post.topic, @post]
+        
+      if params[:topic_id]
+        @topic = Topic.find(params[:topic_id])
+        comment_topic = @topic.comments.find(params[:id])
+        if comment_topic.destroy
+            flash[:notice] = "Comment was deleted."
+            redirect_to @topic
+        else
+            flash[:alert] = "Comment could not be deleted. Try again!"
+            redirect_to @topic
+        end        
+            
       else
-        flash[:alert] = "Comment could not be deleted. Try again!"
-        redirect_to [@post.topic, @post]
-      end
-      
-    else
-
-     @topic = Topic.find(params[:topic_id])
-     comment_topic = @topic.comments.find(params[:id])
-      if comment_topic.destroy
-        flash[:notice] = "Comment was deleted."
-        redirect_to topics_path
-      else
-        flash[:alert] = "Comment could not be deleted. Try again!"
-        redirect_to topics_path
+        @post = Post.find(params[:post_id])
+        comment_post = @post.comments.find(params[:id])
+         if comment_post.destroy
+            flash[:notice] = "Comment was deleted."
+            redirect_to [@post.topic, @post]
+         else
+            flash[:alert] = "Comment could not be deleted. Try again!"
+            redirect_to [@post.topic, @post]
+         end
       end
     end
-  end
+
  
    private
  
@@ -74,9 +74,15 @@ class CommentsController < ApplicationController
    
    def authorize_user
      comment = Comment.find(params[:id])
+     if params[:topic_id]
+         parent = Topic.find(params[:topic_id])
+     else 
+         parent = Post.find(params[:post_id])
+     end     
+         
      unless current_user == comment.user || current_user.admin?
        flash[:alert] = "You do not have permission to delete a comment."
-       redirect_to [comment.post.topic, comment.post]
+       redirect_to parent
      end
    end
 end

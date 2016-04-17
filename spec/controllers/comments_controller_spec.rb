@@ -9,7 +9,8 @@ RSpec.describe CommentsController, type: :controller do
    let(:other_user) { User.create!(name: RandomData.random_name, email: RandomData.random_email, password: "helloworld", role: :member) }
    let(:my_topic) { Topic.create!(name:  RandomData.random_sentence, description: RandomData.random_paragraph) }
    let(:my_post) { my_topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: my_user) }
-   let(:comment) { Comment.create!(body: 'Comment Body', post: post, user: user) }
+   let(:my_comment) { Comment.create!(body: 'Comment Body', user: my_user) }
+   let(:my_post_comment) {my_comment.posts << my_post; my_comment.save; my_comment}
 
    context "guest" do
      describe "POST create" do
@@ -47,7 +48,10 @@ RSpec.describe CommentsController, type: :controller do
      describe "DELETE destroy" do
         
        it "redirects the user to the posts show view" do
+          my_comment.posts << my_post 
+          my_comment.save!
          delete :destroy, post_id: my_post.id, id: my_comment.id
+         #delete :destroy, post_id: my_post.id, id: my_post_comment.id
          expect(response).to redirect_to ([my_topic, my_post])
        end
      end
